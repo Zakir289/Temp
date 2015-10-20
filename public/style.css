@@ -1,0 +1,68 @@
+ul {
+  list-style: none;
+  word-wrap: break-word;
+}
+
+.panel-body
+{
+	height: 300px;
+	overflow-y: scroll;
+}
+
+
+.outerPanel{
+
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 60px;
+    height: 479px;
+    margin-bottom: 60px;
+
+    padding-top: 60px;
+    padding-bottom: 60px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-left: 100px;
+    padding-right: 100px;
+    margin-left: 0px;
+    margin-right: 0px;
+    height: 100vh;
+
+}
+
+.mesg-background{
+    background-color: #009688;
+}
+
+.friends-list{
+    height: 100%;
+    background: #EEEEEE;
+}
+
+.friends-search{
+    margin-top: 30px;
+}
+
+.msg-area{
+    background: white;
+
+}
+
+.friends-list-names{
+overflow: auto;
+    border-radius: 0px;
+}
+
+.messge-text-area{
+    height: 100%;background: white;
+    padding-left:0px;
+    padding-right:0px;
+}
+
+.zero-border-radius{
+    border-radius:0px;
+}
+
+.text-center-align{
+    text-align:center;
+}

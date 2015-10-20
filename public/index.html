@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+    <title>Socket.IO Chat!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <br/>
+            <ul class="pages">
+
+                <li class="page-login">
+                    <form class="form-login" id="login">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control username" placeholder="Enter username..." />
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    <p class="text-warning login-error">
+
+                    </p>
+                </li>
+                <div class="outerPanel" style="display:none">
+                    <div class=" col-md-4 friends-list">
+                        <div>
+
+                            <div id="custom-search-input">
+                                <div class="input-group col-md-12">
+                                    <input type="text" class="form-control input-lg friends-search" placeholder="search friends">
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="msg-area">
+
+
+                            <div class="well friends-list-names">
+                                <ul id="check-list-box" class="list-group checked-list-box">
+                                    <!--<li class="list-group-item">-->
+                                        <!--<span class="state-icon glyphicon glyphicon-unchecked"></span>-->
+                                        <!--Cras justo odio</li>-->
+                                    <!--<li class="list-group-item" data-color="success">-->
+                                        <!--<span class="state-icon glyphicon glyphicon-unchecked"></span>-->
+                                        <!--Dapibus ac facilisis in</li>-->
+                                    <!--<li class="list-group-item" data-color="info"><span class="state-icon glyphicon glyphicon-unchecked"></span>-->
+                                        <!--Morbi leo risus</li>-->
+                                    <!--<li class="list-group-item" data-color="warning">Porta ac consectetur ac</li>-->
+                                    <!--<li class="list-group-item" data-color="danger">Vestibulum at eros</li>-->
+                                </ul>
+                                <br>
+                                <button class="btn btn-primary col-xs-12" id="get-checked-data">send</button>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                    <div class=" col-md-8 messge-text-area" >
+
+                        <div class="panel panel-default zero-border-radius">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-center-align">message cocktail</h3>
+                            </div>
+                            <div class="panel-body container-msg">
+                                <ul class="messages">
+
+                                    <li class="text-muted">Oh hey, welcome to Just Chattin'</li><li class="text-muted">Oh hey, welcome to Just Chattin'</li></ul>
+                            </div>
+                            <div class="panel-footer">
+                                <p class="small">
+                                    <span class="userTyping"></span>
+                                </p>
+                                <form class="form-msg">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control msg" placeholder="Type here...">
+                          <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default">Send</button>
+                          </span>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<script src="/chat.js"></script>
+<script>
+    $(document).ready(function(){
+        chat.init();
+    });
+</script>
+</body>
+</html>

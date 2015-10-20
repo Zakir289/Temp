@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="mesg-background">
+<div class="outerPanel">
+    <div class=" col-md-4 friends-list">
+        <div>
+
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" class="form-control input-lg friends-search" placeholder="search friends">
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="msg-area">
+
+
+                <div class="well friends-list-names">
+                    <ul id="check-list-box" class="list-group checked-list-box">
+                        <li class="list-group-item">
+                            <span class="state-icon glyphicon glyphicon-unchecked"></span>
+                            Cras justo odio</li>
+                        <li class="list-group-item" data-color="success">
+                            <span class="state-icon glyphicon glyphicon-unchecked"></span>
+                            Dapibus ac facilisis in</li>
+                        <li class="list-group-item" data-color="info"><span class="state-icon glyphicon glyphicon-unchecked"></span>
+                            Morbi leo risus</li>
+                        <li class="list-group-item" data-color="warning">Porta ac consectetur ac</li>
+                        <li class="list-group-item" data-color="danger">Vestibulum at eros</li>
+                    </ul>
+                    <br>
+                    <button class="btn btn-primary col-xs-12" id="get-checked-data">send</button>
+                </div>
+
+
+
+        </div>
+
+    </div>
+
+    <div class=" col-md-8 messge-text-area" >
+
+            <div class="panel panel-default zero-border-radius">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center-align">message cocktail</h3>
+                </div>
+                <div class="panel-body container-msg">
+                    <ul class="messages">
+
+                        <li class="text-muted">Oh hey, welcome to Just Chattin'</li><li class="text-muted">Oh hey, welcome to Just Chattin'</li></ul>
+                </div>
+                <div class="panel-footer">
+                    <p class="small">
+                        <span class="userTyping"></span>
+                    </p>
+                    <form class="form-msg">
+                        <div class="input-group">
+                            <input type="text" class="form-control msg" placeholder="Type here...">
+                          <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default">Send</button>
+                          </span>
+                        </div>
+                    </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.js"></script>
+<script>
+
+
+    $('.list-group.checked-list-box .list-group-item').each(function () {
+
+        // Settings
+        var $widget = $(this),
+                $checkbox = $('<input type="checkbox" class="hidden" />'),
+                color = ($widget.data('color') ? $widget.data('color') : "primary"),
+                style = ($widget.data('style') == "button" ? "btn-" : "list-group-item-"),
+                settings = {
+                    on: {
+                        icon: 'glyphicon glyphicon-check'
+                    },
+                    off: {
+                        icon: 'glyphicon glyphicon-unchecked'
+                    }
+                };
+
+        $widget.css('cursor', 'pointer')
+        $widget.append($checkbox);
+
+        // Event Handlers
+        $widget.on('click', function () {
+            $checkbox.prop('checked', !$checkbox.is(':checked'));
+            $checkbox.triggerHandler('change');
+            updateDisplay();
+        });
+        $checkbox.on('change', function () {
+            updateDisplay();
+        });
+
+
+        // Actions
+        function updateDisplay() {
+            var isChecked = $checkbox.is(':checked');
+
+            // Set the button's state
+            $widget.data('state', (isChecked) ? "on" : "off");
+
+            // Set the button's icon
+            $widget.find('.state-icon')
+                    .removeClass()
+                    .addClass('state-icon ' + settings[$widget.data('state')].icon);
+
+            // Update the button's color
+            if (isChecked) {
+                $widget.addClass(style + color + ' active');
+            } else {
+                $widget.removeClass(style + color + ' active');
+            }
+        }
+
+        // Initialization
+        function init() {
+
+            if ($widget.data('checked') == true) {
+                $checkbox.prop('checked', !$checkbox.is(':checked'));
+            }
+
+            updateDisplay();
+
+            // Inject the icon if applicable
+            if ($widget.find('.state-icon').length == 0) {
+                $widget.prepend('<span class="state-icon ' + settings[$widget.data('state')].icon + '"></span>');
+            }
+        }
+        init();
+    })
+    $('#get-checked-data').on('click', function(event) {
+        event.preventDefault();
+        var checkedItems = {}, counter = 0;
+        $("#check-list-box li.active").each(function(idx, li) {
+            checkedItems[counter] = $(li).text();
+            counter++;
+        });
+        console.log(JSON.stringify(checkedItems, null, '\t'))
+    });
+
+
+//    function updateDisplay() {
+//        var isChecked = $checkbox.is(':checked');
+//
+//        // Set the button's state
+//        $widget.data('state', (isChecked) ? "on" : "off");
+//
+//        // Set the button's icon
+//        $widget.find('.state-icon')
+//                .removeClass()
+//                .addClass('state-icon ' + settings[$widget.data('state')].icon);
+//
+//        // Update the button's color
+//        if (isChecked) {
+//            $widget.addClass(style + color + ' active');
+//        } else {
+//            $widget.removeClass(style + color + ' active');
+//        }
+//    }
+//
+//    settings = {
+//        on: {
+//            icon: 'glyphicon glyphicon-check'
+//        },
+//        off: {
+//            icon: 'glyphicon glyphicon-unchecked'
+//        }
+//    }
+//
+//
+//    $widget =$('.list-group.checked-list-box .list-group-item')
+//
+//    $checkbox = $('<input type="checkbox" class="hidden" />'),
+//    color = ($widget.data('color') ? $widget.data('color') : "primary"),
+//    style = ($widget.data('style') == "button" ? "btn-" : "list-group-item-")
+//
+//    $widget.css('cursor', 'pointer')
+//    $widget.append($checkbox);
+//
+//    $widget.on('click', function () {
+//        $checkbox.prop('checked', !$checkbox.is(':checked'));
+//        $checkbox.triggerHandler('change');
+//        updateDisplay();
+//    });
+//    $widget.on('change', function () {
+//        updateDisplay();
+//    });
+//
+
+</script>
+</body>
+</html>
